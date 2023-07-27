@@ -1,4 +1,4 @@
-**Description**
+## **Description**
 
 This repository contains a collection of projects that I have developed, showcasing expertise in various domains and technologies. Each project has its own dedicated subdirectory, accompanied by a detailed README.md file providing essential information and instructions for contributing and using the projects effectively.
 
@@ -45,7 +45,7 @@ project-name/
 Contributions to this project are welcomed and encouraged. Whether you want to fix a bug, add new features, or improve documentation, your contributions are highly valuable.
 
 ### Forking the Repository
-1. Navigate to the project's GitHub page: [https://github.com/your-username/project-name](https://github.com/your-username/project-name).
+1. Navigate to the project's GitHub page: [https://github.com/tusuii/workshop_projects/tree/main](https://github.com/tusuii/workshop_projects/tree/main).
 2. Click on the "Fork" button located at the top right corner of the page. This will create a copy of the repository in your GitHub account.
 
 ### Setting Up the Local Development Environment
