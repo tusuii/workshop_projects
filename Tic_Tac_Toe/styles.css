@@ -1,0 +1,73 @@
+*{
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  font-family: sans-serif;
+  width: 350px;
+}
+
+body{
+  margin-top: 10px;
+  width: auto;
+  height: auto;
+  background-color: #ffffff;
+  color:rgb(8, 6, 6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.container{
+  display: grid;
+  grid-template-columns: repeat(3,auto);
+  height: auto;
+  width: auto;
+}
+
+.box{
+  width: 100px;
+  height: 100px;
+  border: 2px solid #030302;
+  box-shadow: 0 0 0 2px #030302;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-size: 25px;
+}
+
+#status{
+  padding: 20px;
+  font-size: 25px;
+  font-weight: 500;
+}
+
+button{
+  width: 320px;
+  height: 40px;
+  font-size: 18px;
+  color:rgb(225, 233, 255);
+  background-color: #003a52;
+  border: 2px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+
+}
+
+.win{
+    animation: tAnimation ease-in-out 1s infinite;
+}
+
+@keyframes tAnimation {
+  0%{background-color: #ffffff;}
+  10%{background-color: #ea05ff;}
+  20%{background-color: #e420b3;}
+  30%{background-color: #1146d8;}
+  40%{background-color: #27ff6f;}
+  50%{background-color: #eeeb4f;}
+  60%{background-color: #e08a43;}
+  80%{background-color: #e75050;}
+  100%{background-color: #130f40;}
+  
+}

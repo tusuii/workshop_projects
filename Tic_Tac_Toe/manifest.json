@@ -1,0 +1,11 @@
+{
+    "manifest_version": 2,
+    "name": "Tic Tac Toe Game",
+    "version": "1.0",
+    "description": "A simple Tic Tac Toe game Chrome extension.",
+    "permissions": [],
+    "browser_action": {
+      "default_popup": "popup.html"
+    }
+  }
+  

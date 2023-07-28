@@ -1,0 +1,17 @@
+{
+    "manifest_version": 2,
+    "name": "Quote App",
+    "version": "1.0",
+    "description": "A Quote Application",
+    
+    "browser_action": {
+        "default_popup": "popup.html",
+        "default_icon": "icon.png"
+    },
+    "icons": { 
+      "128": "icon.png"
+    },
+    "permissions":["activeTab"]
+    
+  }
+  
