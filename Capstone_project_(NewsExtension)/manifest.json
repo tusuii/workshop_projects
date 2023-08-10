@@ -1,0 +1,14 @@
+{
+    "manifest_version": 2,
+    "name": "News read daily",
+    "description": "displays news titles and descriptions from The Hindu ,The project is sole for learning purpose only.",
+    "version": "1.0",
+    "permissions": ["activeTab", "https://www.thehindu.com/news/national/feeder/default.rss"],
+    "browser_action": {
+      "default_popup": "popup.html",
+      "default_icon":"newspaper-folded.png"
+      
+    }
+    
+  }
+  
