@@ -1,0 +1,50 @@
+CREATE (emma:Student {name: 'Emma', interest: 'Math'})
+CREATE (jake:Student {name: 'Jake', interest: 'Science'})
+CREATE (lily:Student {name: 'Lily', interest: 'Art'})
+CREATE (tom:Student {name: 'Tom', interest: 'Sports'})
+
+
+CREATE (mrSmith:Teacher {name: 'Mr. Smith'})
+
+
+CREATE (scienceClub:Club {name: 'Science Club'})
+CREATE (artClub:Club {name: 'Art Club'})
+CREATE (sportsClub:Club {name: 'Sports Club'})
+
+MATCH (emma:Student {name: 'Emma'}), (jake:Student {name: 'Jake'})
+CREATE (emma)-[:FRIENDS_WITH]->(jake)
+
+
+MATCH (mrSmith:Teacher {name: 'Mr. Smith'})
+MATCH (emma:Student {name: 'Emma'})
+MATCH (jake:Student {name: 'Jake'})
+CREATE (mrSmith)-[:TEACHES]->(emma)
+CREATE (mrSmith)-[:TEACHES]->(jake)
+
+
+MATCH (emma:Student {name: 'Emma'})
+MATCH (jake:Student {name: 'Jake'})
+MATCH (lily:Student {name: 'Lily'})
+MATCH (tom:Student {name: 'Tom'})
+MATCH (scienceClub:Club {name: 'Science Club'})
+MATCH (artClub:Club {name: 'Art Club'})
+MATCH (sportsClub:Club {name: 'Sports Club'})
+
+CREATE (emma)-[:MEMBER_OF]->(scienceClub)
+CREATE (jake)-[:MEMBER_OF]->(scienceClub)
+CREATE (lily)-[:MEMBER_OF]->(artClub)
+CREATE (tom)-[:MEMBER_OF]->(sportsClub)
+
+MATCH (emma:Student {name: 'Emma'}), (jake:Student {name: 'Jake'})
+CREATE (emma)-[:WORKS_WITH]->(jake)
+
+
+MATCH (s:Student) RETURN s
+
+MATCH (emma:Student {name: 'Emma'})-[:FRIENDS_WITH]->(friend) RETURN friend
+
+
+MATCH (teacher:Teacher)-[:TEACHES]->(subject) RETURN teacher, subject
+
+
+MATCH (member)-[:MEMBER_OF]->(club:Club {name: 'Science Club'}) RETURN member
