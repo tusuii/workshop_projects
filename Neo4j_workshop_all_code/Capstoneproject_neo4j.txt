@@ -1,0 +1,172 @@
+Creating Nodes Example:
+
+Students:
+------------------------------------------------------
+------------------------------------------------------
+CREATE (:Student {name: 'Alice', age: 20});
+CREATE (:Student {name: 'Bob', age: 22});
+CREATE (:Student {name: 'Charlie', age: 21});
+
+
+Instructors:
+------------------------------------------------------
+------------------------------------------------------
+CREATE (:Instructor {name: 'Dr. Smith', department: 'Math'});
+CREATE (:Instructor {name: 'Dr. Johnson', department: 'Science'});
+
+Courses:
+------------------------------------------------------
+------------------------------------------------------
+CREATE (:Course {title: 'Calculus 101'});
+CREATE (:Course {title: 'Biology 101'});
+
+
+Creating Relationships:
+Students to Courses:
+------------------------------------------------------
+------------------------------------------------------
+MATCH (s:Student {name: 'Alice'}), (c:Course {title: 'Calculus 101'})
+CREATE (s)-[:ENROLLED_IN]->(c);
+
+MATCH (s:Student {name: 'Bob'}), (c:Course {title: 'Calculus 101'})
+CREATE (s)-[:ENROLLED_IN]->(c);
+
+MATCH (s:Student {name: 'Charlie'}), (c:Course {title: 'Biology 101'})
+CREATE (s)-[:ENROLLED_IN]->(c);
+
+
+Instructors to Courses:
+------------------------------------------------------
+------------------------------------------------------
+MATCH (i:Instructor {name: 'Dr. Smith'}), (c:Course {title: 'Calculus 101'})
+CREATE (i)-[:TEACHES]->(c);
+
+MATCH (i:Instructor {name: 'Dr. Johnson'}), (c:Course {title: 'Biology 101'})
+CREATE (i)-[:TEACHES]->(c);
+
+
+Queries and Answers
+Find all courses:
+------------------------------------------------------
+------------------------------------------------------
+MATCH (c:Course) RETURN c.title AS Courses;
+
+List all students:
+------------------------------------------------------
+------------------------------------------------------
+MATCH (s:Student) RETURN s.name AS Students;
+
+Find all instructors:
+------------------------------------------------------
+------------------------------------------------------
+MATCH (i:Instructor) RETURN i.name AS Instructors;
+
+Find students enrolled in 'Calculus 101' or any other:
+------------------------------------------------------
+------------------------------------------------------
+MATCH (s:Student)-[:ENROLLED_IN]->(c:Course {title: 'Calculus 101'}) RETURN s.name AS StudentsInCalculus;
+
+Find courses taught by 'Dr. Smith':
+------------------------------------------------------
+------------------------------------------------------
+MATCH (i:Instructor {name: 'Dr. Smith'})-[:TEACHES]->(c:Course) RETURN c.title AS CoursesBySmith;
+
+Find all courses along with their instructors:
+------------------------------------------------------
+------------------------------------------------------
+MATCH (c:Course)<-[:TEACHES]-(i:Instructor) RETURN c.title AS Course, i.name AS Instructor;
+
+Count the number of students enrolled in 'Biology 101':
+------------------------------------------------------
+------------------------------------------------------
+MATCH (s:Student)-[:ENROLLED_IN]->(c:Course {title: 'Biology 101'}) RETURN COUNT(s) AS NumberOfStudents;
+
+Find instructors in the 'Science' department:
+------------------------------------------------------
+------------------------------------------------------
+MATCH (i:Instructor {department: 'Science'}) RETURN i.name AS ScienceInstructors;
+
+List all students along with their enrolled courses:
+------------------------------------------------------
+------------------------------------------------------
+MATCH (s:Student)-[:ENROLLED_IN]->(c:Course) RETURN s.name AS Student, c.title AS Course;
+
+Find all courses and the number of students in each:
+------------------------------------------------------
+------------------------------------------------------
+MATCH (c:Course)<-[:ENROLLED_IN]-(s:Student) RETURN c.title AS Course, COUNT(s) AS NumberOfStudents GROUP BY c.title;
+
+Find the most popular course (highest enrollment):
+------------------------------------------------------
+------------------------------------------------------
+MATCH (c:Course)<-[:ENROLLED_IN]-(s:Student) RETURN c.title AS Course, COUNT(s) AS Enrollment ORDER BY Enrollment DESC LIMIT 1;
+
+Find all instructors teaching more than one course:
+------------------------------------------------------
+------------------------------------------------------
+MATCH (i:Instructor)-[:TEACHES]->(c:Course) RETURN i.name AS Instructor, COUNT(c) AS CoursesCount WHERE CoursesCount > 1;
+
+Find students who have not enrolled in any courses:
+------------------------------------------------------
+------------------------------------------------------
+MATCH (s:Student) WHERE NOT (s)-[:ENROLLED_IN]->(:Course) RETURN s.name AS StudentsWithoutCourses;
+
+Find courses with no students enrolled:
+------------------------------------------------------
+------------------------------------------------------
+MATCH (c:Course) WHERE NOT (c)<-[:ENROLLED_IN]-(s:Student) RETURN c.title AS CoursesWithoutStudents;
+
+Count total number of courses offered:
+------------------------------------------------------
+------------------------------------------------------
+MATCH (c:Course) RETURN COUNT(c) AS TotalCourses;
+
+Count total number of students:
+------------------------------------------------------
+------------------------------------------------------
+MATCH (s:Student) RETURN COUNT(s) AS TotalStudents;
+
+Count total number of instructors:
+------------------------------------------------------
+------------------------------------------------------
+MATCH (i:Instructor) RETURN COUNT(i) AS TotalInstructors;
+
+Find students enrolled in more than one course:
+------------------------------------------------------
+------------------------------------------------------
+MATCH (s:Student)-[:ENROLLED_IN]->(c:Course) RETURN s.name AS Student, COUNT(c) AS CoursesCount WHERE CoursesCount > 1;
+
+Find the course with the least number of students:
+------------------------------------------------------
+------------------------------------------------------
+MATCH (c:Course)<-[:ENROLLED_IN]-(s:Student) RETURN c.title AS Course, COUNT(s) AS Enrollment ORDER BY Enrollment ASC LIMIT 1;
+
+Find instructors who have no courses assigned:
+------------------------------------------------------
+------------------------------------------------------
+MATCH (i:Instructor) WHERE NOT (i)-[:TEACHES]->(:Course) RETURN i.name AS InstructorsWithoutCourses;
+
+Find all courses and their corresponding student names:
+------------------------------------------------------
+------------------------------------------------------
+MATCH (c:Course)<-[:ENROLLED_IN]-(s:Student) RETURN c.title AS Course, s.name AS Student;
+
+List all courses that have been taught by more than one instructor:
+------------------------------------------------------
+------------------------------------------------------
+MATCH (c:Course)<-[:TEACHES]-(i:Instructor) RETURN c.title AS Course, COUNT(i) AS InstructorsCount WHERE InstructorsCount > 1;
+
+Find all students who are enrolled in 'Calculus 101' and 'Biology 101':
+------------------------------------------------------
+------------------------------------------------------
+MATCH (s:Student)-[:ENROLLED_IN]->(c:Course) WHERE c.title IN ['Calculus 101', 'Biology 101'] RETURN s.name AS Student;
+
+Find instructors who teach 'Calculus 101':
+------------------------------------------------------
+------------------------------------------------------
+MATCH (i:Instructor)-[:TEACHES]->(c:Course {title: 'Calculus 101'}) RETURN i.name AS InstructorsTeachingCalculus;
+
+Count how many courses each instructor teaches:
+------------------------------------------------------
+------------------------------------------------------
+MATCH (i:Instructor)-[:TEACHES]->(c:Course) RETURN i.name AS Instructor, COUNT(c) AS CoursesCount;
