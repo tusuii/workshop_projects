@@ -1,3 +1,11 @@
+Capstone Data science project with Neo4j:
+
+Imagine you are a data Scientist at a Birla college that has a diverse range of courses, students, and instructors. The college offers various courses, and each course is taught by one or more instructors. Each student can enroll in multiple courses, and each course can have many students. Additionally, instructors can teach multiple courses and are often involved in various projects or committees at the college. Your goal is to use Neo4j to model this system. You need to create nodes for courses, students, and instructors, and define relationships to show which students are enrolled in which courses and which instructors teach those courses. Furthermore, you want to analyze the data by answering specific queries about course enrollments, instructor assignments, and student participation.
+
+---------------------------------------------------------------------------------
+
+
+possible solutions with example solutions , (DO NOT COPY AS IT IS!!!) CHANGE USECASE ACCORDINGLY YOUR NEED 
 Creating Nodes Example:
 
 Students:
